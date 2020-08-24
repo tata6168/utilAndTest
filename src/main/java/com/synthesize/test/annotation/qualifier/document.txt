@@ -1,0 +1,2 @@
+注解qualifier（限定符，修饰符。。。）
+注入bean时指定beanName

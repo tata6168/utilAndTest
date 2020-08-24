@@ -1,0 +1,30 @@
+CRUD
+R:RETRIEVE：检索
+
+Lucene core:  索引cud（IndexWriter对象），索引查询（IndexSearcher）
+
+Directory : 索引目录的抽象{
+    MMDirectory : 针对64为系统，维护索引库时，会结合内存与硬盘同步来处理索引。
+    SimpleFSDirectory : 传统索引库。
+    RAMDirectory : 内存索引库
+}
+
+Field : 文档中的域 ( 要索引的内容,也就是搜索的内容,注意是否分词 ){
+
+    property:   1.Analyzer是否分词{
+                    日期，编号不用分词
+                }
+                2.indexed是否索引{图片路径
+                    不索引该内容无法查询
+                    如
+                }
+                2.Store.YES/NO是否存储{
+                    将field值存储到doc中，不能存储无法通过doc得到
+                    内容较大的不用存储，如商品介绍可以到关系型数据库中获取
+                    }
+    类似{key,value}
+    常用类型: StringField
+             LongField
+             StoreField
+             TextField(FieldName,FieldValue,Store.NO)/(FieldName,Reader)
+}

@@ -1,0 +1,5 @@
+Spring Boot
+    Annotation(注解)
+    1.qualifier(限定符)：指定属性注入时的beanName
+Mybatis
+    intercept(拦截器)：

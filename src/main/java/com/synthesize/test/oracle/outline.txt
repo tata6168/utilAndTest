@@ -1,0 +1,4 @@
+oracleDB:
+1.架构（framework）：oracle一个实例只能管理一个数据库,集群情况下除外。
+2.安全（security）：oracle是获得IOS认证的数据库。
+3.内存（memory）：init.ora文件

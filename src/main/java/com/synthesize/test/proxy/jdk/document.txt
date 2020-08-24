@@ -1,0 +1,2 @@
+jdk动态代理（Proxy,InvocationHandler）
+被代理类需要实现某个接口，生成兄弟类来实现代理

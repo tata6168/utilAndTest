@@ -1,0 +1,21 @@
+mybatis原理：
+1.工作流程：
+    SqlSessionFactoryBuilder
+    SqlSessionFactory（SpringBoot中直接注入了此对象）
+    || openSession() 创建Session
+    SqlSession
+    || 拿到Mapper代理对象
+    Configuration
+    ||
+    MapperRegistry
+    ||
+    MapperProxyFactory
+    ||
+    Proxy
+    ||
+    Mapper$Proxy
+    ||
+    MapperProxy
+    ||
+    DB
+

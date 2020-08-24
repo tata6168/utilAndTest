@@ -1,0 +1,2 @@
+mybatis:
+sql:启动时自动构建sql到缓存中
