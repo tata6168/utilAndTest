@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-config.dtd">
+<!--配置文件的根-->
+<configuration>
+    <!--导入properties文件-->
+    <properties resource="db.properties"></properties>
+
+    <!--自定义别名-->
+    <typeAliases>
+        <!--方式1:一个一个定义-->
+        <!--<typeAlias type="cn.itsource.mybatis._03_detail.domain.Product" alias="Product"></typeAlias>-->
+        <!--方式2:以包的方式定义
+              会把该报下面所有的类定义别名,别名为类名或类名首字母小写
+              多个包要分别定义,不能用逗号分隔
+        -->
+        <typeAlias type="com.synthesize.test.mybatis.aloneUse.domain.Demo" alias="Demo"></typeAlias>
+    </typeAliases>
+    <!--environments:环境们,可以配置多个环境-->
+        <!--default="development":默认使用id为development的环境-->
+    <environments default="development">
+        <!--配置一个环境-->
+            <!--id:环境的标识-->
+        <environment id="development">
+            <!--事务管理器配置-->
+            <!--type="JDBC":使用jdbc事务管理器-->
+            <transactionManager type="JDBC"/>
+            <!--连接池配置-->
+            <dataSource type="POOLED">
+                <property name="driver" value="${db.driver}"/>
+                <property name="url" value="${db.url}"/>
+                <property name="username" value="${db.username}"/>
+                <property name="password" value="${db.password}"/>
+            </dataSource>
+        </environment>
+    </environments>
+
+    <!--加载映射文件-->
+    <mappers>
+        <!--
+          拷贝：copy renativepath
+          前面不要有/
+          中间不是.是/因为表示路径
+        -->
+        <!--hello版本-->
+        <!--<mapper resource="cn/itsource/mybatis/_01_hello/domain/ProductMapper.xml"/>-->
+        <!--crud工具类版本-->
+        <!--<mapper resource="cn/itsource/mybatis/_02_crud_tools/domain/ProductMapper.xml"/>-->
+        <!--mybatis的一些细节-->
+        <!--<mapper resource="cn/itsource/mybatis/_03_detail/domain/ProductMapper.xml"/>-->
+        <!--批量操作:删除,添加-->
+        <mapper resource="com/synthesize/test/mybatis/aloneUse/dao/DemoDao.xml"/>
+    </mappers>
+</configuration>
