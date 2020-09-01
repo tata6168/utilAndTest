@@ -7,12 +7,12 @@ import java.lang.reflect.Field;
 import java.lang.reflect.InvocationHandler;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
-public class ProxyFactory implements InvocationHandler {
+public class LuceneProxy implements InvocationHandler {
     Object target;
-    public ProxyFactory(Object target) throws IOException {
+    public LuceneProxy(Object target) throws IOException {
         this.target = target;
     }
-    private Object proxy(){
+    public Object proxy(){
         if(target!=null&&target instanceof LuceneService)
         return Proxy.newProxyInstance(target.getClass().getClassLoader(),
                                       target.getClass().getInterfaces(),
@@ -22,20 +22,18 @@ public class ProxyFactory implements InvocationHandler {
     }
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
-        Field writer = target.getClass().getDeclaredField("indexWriter");
+        Object invoke = method.invoke(this.target, args);
+        Field writer = this.target.getClass().getDeclaredField("indexWriter");
         writer.setAccessible(true);
         IndexWriter indexWriter = (IndexWriter) writer.get(target);
-        if(indexWriter==null)
+        if(indexWriter==null) {
             throw new Exception("...variable indexWriter null");
-        Object invoke = method.invoke(this.target, args);
+        }
         indexWriter.commit();
+        System.out.println("commit");
         indexWriter.close();
         return invoke;
 
     }
 
-    public static void main(String[] args) throws IOException {
-        LuceneService proxy = (LuceneService) new ProxyFactory(new LuceneServiceImpl()).proxy();
-        proxy.search();
-    }
 }

@@ -1,10 +1,15 @@
 package com.synthesize.test.mybatis.aloneUse.domain;
 
+import com.synthesize.test.lucene.annotation.FieldCondition;
 import lombok.ToString;
+import org.apache.lucene.document.LongPoint;
+import org.apache.lucene.document.TextField;
+import org.apache.lucene.queries.function.valuesource.LongFieldSource;
 
 import java.util.Date;
 @ToString
 public class Demo {
+    @FieldCondition(type = LongPoint.class)
     Integer id;
     String name;
     Date time;
